@@ -1,13 +1,13 @@
 
 
 
-let budgetArray = JSON.parse(localStorage.getItem("budget")) || [];
+var budgetArray = JSON.parse(localStorage.getItem("budget")) || [];
 
-const  addUp = () =>{
-  let pName = productName.value;
-  let quant = quantityOwn.value;
-  let prices = priceName.value;
-  let budgetObj = {pName, quant, prices};
+function addUp  () {
+  var pName = productName.value;
+  var quant = quantityOwn.value;
+  var prices = priceName.value;
+  var budgetObj = {pName, quant, prices};
   
   if (pName=="" && quant=="" && prices=="") {
     showErr.innerHTML=`<p class="alert alert-info text-center p-2 my-3">Space must be filled</p>`
@@ -23,7 +23,7 @@ const  addUp = () =>{
 
 
 if (budgetArray && budgetArray.length > 0) {
-  let totalSpent = 0;
+  var totalSpent = 0;
   displayAll();
   resultCard.innerHTML += `
   <p class="total">TOTAL-SPENT: $${totalSpent.toFixed(2)}</p>
@@ -32,10 +32,10 @@ if (budgetArray && budgetArray.length > 0) {
 }
     
     
-    const displayAll = () =>{
+    function displayAll  () {
       resultCard.innerHTML = ""
       budgetArray.map((item, i)=> {
-        let itemCost = item.quant * item.prices;
+        var itemCost = item.quant * item.prices;
         totalSpent += itemCost;
         resultCard.innerHTML += `
         
@@ -83,7 +83,7 @@ if (budgetArray && budgetArray.length > 0) {
                       </div>`;
       })
     }
-                    const deleteAny = () =>{
+                    function deleteAny  (i) {
                       budgetArray.splice(i, 1);
                       localStorage.setItem("budget", JSON.stringify(budgetArray));
                       totalSpent = 0; 
@@ -91,7 +91,7 @@ if (budgetArray && budgetArray.length > 0) {
                       displayAll(); 
                     }
                     
-                    const editAny = () =>{
+                    function editAny  (i) {
                   
                       budgetArray[i]["pName"] = document.getElementById(`productName-${i}`).value;
                       budgetArray[i]["quant"] =  document.getElementById(`quantityOwn-${i}`).value;
@@ -102,6 +102,6 @@ if (budgetArray && budgetArray.length > 0) {
                       displayAll()
                 
                     }
-                    const goBack = () =>{
+                    function goBack  () {
                       window.location.href = "index.html"
                     }
